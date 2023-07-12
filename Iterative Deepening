@@ -1,0 +1,27 @@
+goal=(input("enter the goal node")) 
+croot=(input("enter the root node")) 
+maxdepth=int(input("enterthemaxdepth")) 
+path=[]
+def dfs(croot,goal,graph,maxdepth,path): 
+path.append(croot)
+ifcroot==goal:
+returnTrue
+ifmaxdepth<=0:
+returnFalse
+for i in graph[croot]:
+if(dfs(i,goal,graph,maxdepth-1,path)):
+return True
+def iterative(croot,goal,graph,maxdepth,path): 
+for i in range(0,maxdepth): 
+if(dfs(croot,goal,graph,i,path)):
+returnTrue
+if iterative(croot,goal,d,maxdepth,path):
+print("path found")
+print(path) 
+else:
+print("pathnotfound") 
+print(path)
+ 
+OUTPUT:
+enter the goal nodeH enter the root nodeA enterthemaxdepth3 path found
+['A','A','B','C','A','B','E','F','C','D','H']
