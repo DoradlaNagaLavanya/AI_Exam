@@ -1,0 +1,35 @@
+#greedy best first
+def second(x):
+    return x[1]
+q=[]
+def best_first(graph,node,goal):
+    visited=[]
+    queue=[]
+    visited.append((node,h[node]))
+    queue.append((node,h[node]))
+    while queue:
+        t=queue.pop(0)
+        q.append(t)
+        print(t, end=" ")
+        if t[0]==goal:
+            print("\nfound")
+            return
+        for neighbor in graph[t[0]]:
+            if (neighbor,h[neighbor]) not in visited:
+                visited.append((neighbor,h[neighbor]))
+                queue.append((neighbor,h[neighbor]))
+
+        queue.sort(key=second)
+if __name__ =='__main__':
+    #graph={ 0:[1,2], 1:[2], 2:[0,3],3:[3]}
+    #bfs(graph,2)
+    #graph={1:[2,3,4],2:[5],3:[4,5,6],4:[6],5:[7],6:[8],8:[]}
+    #h={1:40,2:32,3:25,4:35,5:19,6:17,7:10,8:0}
+    graph={'A':["B","C"],'B':["D","E","F"],'C':['G','H','I','J'],"H":['C','I']}
+    h={'A':8,'B':10,'C':4,'D':15,'E':14,'F':12,'G':7,"H":2,'I':0,'J':4}
+    pc={'A':{"B":1,"C":2},'B':{"D":7,"E":9,"F":5},'C':{'G':4,'H':3,'I':6,'J':8},"H":{'C':3,'I':1}}
+    best_first(graph,'A','I')
+    pcost=0
+    for i in range(len(q)-1):
+        pcost+=pc[q[i][0]][q[i+1][0]]
+    print("path cost is",pcost)
