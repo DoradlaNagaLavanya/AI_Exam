@@ -1,0 +1,69 @@
+
+
+a. BFS 
+Source Code:
+def action(z):
+ child=[]
+ if z[0]=='L':
+ child.append(['R',z[1]])
+ child.append(['L',[0,z[1][1]]])
+ else:
+ child.append(['L',z[1]])
+ child.append(['R',[z[1][0],0]])
+ return child
+def vaccumWorld():
+ f=[['R',[1,1]]]
+ visited=[['R',[1,1]]]
+ z=f[0]
+ while 1:
+ child=action(z)
+ for x in child:
+ if x not in visited:
+ f.append(x)
+ visited.append(x)
+ if x==['L',[0,0]] or x==['R',[0,0]]:
+ print("Goal reached")
+ return visited
+ f.remove(z)
+ z=f[0]
+
+
+Output:
+Goal reached
+[['R', [1, 1]],['L', [1, 1]],['R', [1, 0]],['L', [0, 1]],['L', [1, 0]],['R', [0, 1]],['L', [0, 0]]]
+
+
+
+
+b. DFS
+Source Code:
+def action(z):
+ child=[]
+ if z[0]=='L':
+Regd.No: Y20CS074
+18
+ child.append(['R',z[1]])
+ child.append(['L',[0,z[1][1]]])
+ else:
+ child.append(['L',z[1]])
+ child.append(['R',[z[1][0],0]])
+ return child
+def vaccumWorld():
+ f=[['R',[1,1]]]
+ visited=[['R',[1,1]]]
+ z=f[0]
+ while 1:
+ child=action(z)
+ for x in child:
+ if x not in visited:
+ f.append(x)
+ visited.append(x)
+ if x==['L',[0,0]] or x==['R',[0,0]]:
+ print("Goal reached")
+ return visited
+ f.remove(z)
+ z=f[-1]
+vaccumWorld()
+Output:
+Goal reached
+[['R', [1, 1]], ['L', [1, 1]], ['R', [1, 0]], ['L', [1, 0]], ['L', [0, 0]]]
